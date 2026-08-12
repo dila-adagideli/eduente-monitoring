@@ -1,412 +1,291 @@
-# 🚀 Eduente Monitoring
+<div align="center">
 
-**Eduente Monitoring**, sunucu ve uygulama durumunu gerçek zamanlı olarak izlemek, sistem kaynaklarını takip etmek ve uygulama isteklerini merkezi bir log ekranında görüntülemek amacıyla geliştirilmiş bir **web tabanlı monitoring sistemi**dir.
+# Eduente Monitoring
 
-Proje kapsamında sunucunun **CPU, RAM, disk, işletim sistemi, load average ve servis durumları** takip edilebilmekte; uygulama içerisinde gerçekleşen API istekleri loglanarak kullanıcıya sunulmaktadır.
+**Modern altyapı izleme ve sistem sağlığı paneli**
 
-Dashboard verileri otomatik olarak güncellenerek sistemin güncel durumu anlık olarak takip edilebilir.
+Grafana, Datadog ve New Relic tarzında dark theme bir monitoring deneyimi — sunucu metrikleri, servis durumu, log takibi ve API key yönetimi tek panelde.
 
----
+<br />
 
-## ✨ Özellikler
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-### 📊 System Monitoring
-
-Dashboard üzerinden sunucunun temel sistem metrikleri görüntülenebilir:
-
-* CPU kullanım oranı
-* CPU modeli ve çekirdek sayısı
-* RAM kullanım oranı
-* Disk kullanım oranı
-* Load Average
-
-  * 1 dakika
-  * 5 dakika
-  * 15 dakika
-* İşletim sistemi bilgileri
-* Kernel bilgisi
-* Sistem uptime
-* Sunucunun boot zamanı
-* Laravel ve PHP bilgileri
-* Redis durumu
-* Redis bellek kullanımı
-* Redis bağlı client sayısı
-* Genel sistem health durumu
-
-Dashboard üzerindeki sistem verileri **5 saniyede bir otomatik olarak güncellenmektedir.**
+</div>
 
 ---
 
-### 📝 Request Logging
+## İçindekiler
 
-Sistemde gerçekleşen API istekleri merkezi olarak loglanmaktadır.
-
-Her log kaydında:
-
-* HTTP Method
-* URL
-* Controller
-* HTTP Status Code
-* İşlem sonucu
-* IP adresi
-* Request bilgileri
-* Response time
-* Created at
-
-gibi bilgiler tutulmaktadır.
-
-Hassas bilgilerin loglanmasını önlemek amacıyla password ve password confirmation gibi alanlar filtrelenmektedir.
+- [Proje Hakkında](#proje-hakkında)
+- [Öne Çıkan Özellikler](#öne-çıkan-özellikler)
+- [Ekran Görüntüleri](#ekran-görüntüleri)
+- [Teknoloji Yığını](#teknoloji-yığını)
+- [Mimari](#mimari)
+- [Kurulum](#kurulum)
+- [API Özeti](#api-özeti)
+- [Proje Yapısı](#proje-yapısı)
+- [Geliştirici Notları](#geliştirici-notları)
 
 ---
 
-### 📋 Logs Dashboard
+## Proje Hakkında
 
-Frontend üzerinde oluşturulan Logs sayfası sayesinde sistemde oluşan istek kayıtları görüntülenebilir.
+**Eduente Monitoring**, sunucu ve uygulama altyapısının anlık durumunu izlemek için geliştirilmiş full-stack bir monitoring projesidir.
 
-* En güncel log kayıtları görüntülenir.
-* HTTP methodlarına göre kayıtlar incelenebilir.
-* Status code ve işlem sonucu takip edilebilir.
-* Response time görüntülenebilir.
-* Log oluşturulma zamanı kullanıcının yerel saatine çevrilerek gösterilir.
+Panel üzerinden:
 
----
+- CPU, RAM, disk ve response time gibi **canlı sistem metriklerini** takip edebilirsiniz.
+- Laravel ve Redis gibi **servis bağımlılıklarının** durumunu görebilirsiniz.
+- **Load average** ve **performans grafikleri** ile host yükünü analiz edebilirsiniz.
+- API üzerinden gelen **istek loglarını** son kayıtlar halinde inceleyebilirsiniz.
+- Kayıt sırasında oluşturulan **API Key** ile harici servislerden log gönderimi yapılabilir.
 
-### 🔐 Authentication
-
-Kullanıcı yönetimi için authentication yapısı bulunmaktadır.
-
-Desteklenen işlemler:
-
-* Register
-* Login
-* Logout
-* Kullanıcı bilgilerinin görüntülenmesi
-* Authenticated API erişimi
-
-Authentication işlemlerinde **Laravel Sanctum** kullanılmıştır.
+Frontend; glassmorphism, dark theme ve neon vurgularla modern bir SaaS monitoring arayüzü sunar. Veriler **5 saniyede bir** otomatik yenilenir.
 
 ---
 
-### 🔑 API Key
+## Öne Çıkan Özellikler
 
-Her kullanıcı için monitoring API'sine erişimde kullanılabilecek özel bir API Key bulunmaktadır.
-
-API Key:
-
-* Kullanıcıya özeldir.
-* Settings ekranından görüntülenebilir.
-* Maskeli olarak gösterilebilir.
-* Tek tıklamayla kopyalanabilir.
-* Harici servislerin monitoring sistemine log göndermesi için kullanılabilir.
-
-Örneğin harici bir uygulama aşağıdaki yapıyla monitoring sistemine log gönderebilir:
-
-```http
-POST /api/log
-X-API-KEY: YOUR_API_KEY
-Content-Type: application/json
-```
-
-Bu yapı sayesinde monitoring sistemi yalnızca kendi frontend'inden değil, farklı uygulama ve servislerden de log alabilecek şekilde tasarlanmıştır.
+| Alan | Açıklama |
+|------|----------|
+| **Dashboard** | Üst seviye sistem sağlığı — metrik kartları, load average, Recharts grafikleri |
+| **System Status** | Detaylı altyapı envanteri — host, hardware, software, health summary |
+| **Logs** | Son 20 API isteği — method, URL, status, response time |
+| **Settings** | API Key göster/gizle, kopyala; hesap ve güvenlik bilgileri |
+| **Auth** | Register / Login / Logout — Laravel Sanctum token tabanlı oturum |
+| **Canlı yenileme** | Dashboard, System Status ve Logs sayfalarında 5 sn polling |
+| **Responsive** | Masaüstü tablo + mobil kart görünümü |
 
 ---
 
-### ⚙️ Settings
+## Ekran Görüntüleri
 
-Settings sayfasında kullanıcıya ait:
+> Screenshot'ları `docs/screenshots/` klasörüne ekleyin. Dosya adları aşağıdaki yollarla eşleşmelidir.
 
-* API Key
-* Kullanıcı adı
-* E-posta
-* Kullanıcı ID
-* Oturum durumu
+### Login
 
-görüntülenebilir.
+Giriş ekranı — email ve şifre ile oturum açma.
 
-Ayrıca kullanıcı sistemden logout olabilir.
+![Login ekranı](./docs/screenshots/login.png)
+
+<!-- SS yolu: docs/screenshots/login.png -->
 
 ---
 
-### ❤️ Health Monitoring
+### Register
 
-Sistem kaynaklarının belirlenen eşiklere göre durumu kontrol edilmektedir.
+Yeni kullanıcı kaydı.
 
-CPU, RAM ve disk kullanımı belirlenen seviyelere göre:
+![Register ekranı](./docs/screenshots/register.png)
 
-* `healthy`
-* `warning`
-* `critical`
-
-olarak değerlendirilir.
-
-Redis ve Laravel servislerinin durumları da health bilgisine dahil edilmektedir.
+<!-- SS yolu: docs/screenshots/register.png -->
 
 ---
-
-## 🏗️ Proje Mimarisi
-
-Proje frontend ve backend olmak üzere iki ana bölümden oluşmaktadır.
-
-```text
-                    ┌─────────────────────┐
-                    │      Frontend       │
-                    │      React + Vite   │
-                    └──────────┬──────────┘
-                               │
-                         REST API / JSON
-                               │
-                    ┌──────────▼──────────┐
-                    │       Backend       │
-                    │   Laravel 13 API    │
-                    └───────┬───────┬──────┘
-                            │       │
-                    ┌───────▼───┐ ┌─▼────────┐
-                    │ PostgreSQL│ │  Redis   │
-                    └───────────┘ └──────────┘
-```
-
-Backend tarafında sistem metrikleri işletim sisteminden alınarak API üzerinden frontend'e aktarılmaktadır.
-
-Request logging yapısı middleware üzerinden çalışmaktadır.
-
----
-
-## 🛠️ Kullanılan Teknolojiler
-
-### Backend
-
-* **PHP 8.4**
-* **Laravel 13**
-* **Laravel Sanctum**
-* **Laravel REST API**
-* **Eloquent ORM**
-
-### Frontend
-
-* **React**
-* **Vite**
-* **JavaScript**
-* **CSS**
-
-### Database & Cache
-
-* **PostgreSQL**
-* **Redis**
-
-### DevOps / Development
-
-* **Docker**
-* **Docker Compose**
-* **Git**
-* **GitHub**
-* **Postman**
-* **DBeaver**
-* **VS Code**
-
----
-
-## 🐳 Docker
-
-Proje geliştirme ortamı Docker ve Docker Compose kullanılarak hazırlanmıştır.
-
-Temel servisler:
-
-```text
-Frontend
-   │
-   └── React / Vite
-
-Backend
-   │
-   └── Laravel / PHP
-
-Database
-   │
-   └── PostgreSQL
-
-Cache
-   │
-   └── Redis
-```
-
-Projenin çalıştırılması için Docker'ın sistemde kurulu olması gerekir.
-
-### Projeyi Başlatma
-
-Repository klonlandıktan sonra:
-
-```bash
-git clone <repository-url>
-
-cd Eduente-staj
-```
-
-Ardından:
-
-```bash
-docker compose up --build
-```
-
-Docker container'ları çalışmaya başladıktan sonra frontend ve backend servisleri üzerinden uygulamaya erişilebilir.
-
----
-
-## 🔌 API Endpoints
-
-### Authentication
-
-```http
-POST /api/register
-POST /api/login
-```
-
-### System Monitoring
-
-```http
-GET /api/system-status
-```
-
-### Logs
-
-```http
-GET /api/logs
-POST /api/log
-```
-
-`POST /api/log` endpoint'i API Key ile korunmaktadır.
-
-### User
-
-```http
-GET /api/user
-```
-
-Bu endpoint authentication gerektirir.
-
----
-
-## 📡 Monitoring Data
-
-`/api/system-status` endpoint'i sistem hakkında aşağıdaki bilgileri döndürmektedir:
-
-```json
-{
-  "server": {},
-  "os": {},
-  "cpu": {},
-  "load_average": {},
-  "memory": {},
-  "disk": {},
-  "services": {},
-  "health": {},
-  "response_time": "ms",
-  "updated_at": "UTC"
-}
-```
-
-`updated_at` backend tarafında UTC olarak tutulurken frontend tarafında kullanıcının yerel saatine dönüştürülmektedir.
-
----
-
-## 🔒 Güvenlik
-
-Projede temel güvenlik önlemleri uygulanmıştır:
-
-* Laravel Sanctum authentication
-* API Key doğrulama
-* Hassas request alanlarının loglanmaması
-* Password bilgilerinin loglardan çıkarılması
-* Authenticated endpoint'lerin korunması
-* API erişiminin kontrollü gerçekleştirilmesi
-
-> **Not:** Gerçek production ortamında `.env` dosyası ve API Key gibi hassas bilgiler kesinlikle repository'ye gönderilmemelidir.
-
----
-
-## 🧪 Test
-
-API geliştirme ve kontrol süreçlerinde **Postman** kullanılmıştır.
-
-Test edilen temel işlemler:
-
-* Register
-* Login
-* Logout
-* API Key doğrulama
-* System Status
-* Log gönderme
-* Log listeleme
-* Request logging
-* Dashboard sistem metrikleri
-
-Frontend tarafında ise Dashboard, Logs ve Settings ekranlarının kullanıcı akışları test edilmiştir.
-
-Ayrıca proje geliştirme sürecinde farklı bir eğitim uygulaması geliştiren ekibe destek amacıyla çeşitli testler gerçekleştirilmiş ve test sonuçları doğrultusunda geri bildirimlerde bulunulmuştur.
-
----
-
-## 📸 Screenshots
 
 ### Dashboard
 
-><img width="1901" height="897" alt="image" src="https://github.com/user-attachments/assets/92d93dbc-ae3a-40b1-84b8-beaa92d5de29" />
-<img width="1907" height="892" alt="image" src="https://github.com/user-attachments/assets/e1492568-275f-4771-98ba-2f7d28b7c891" />
-<img width="1912" height="876" alt="image" src="https://github.com/user-attachments/assets/c9d08426-5119-40b8-bef8-292d3b661a1e" />
-<img width="1912" height="900" alt="image" src="https://github.com/user-attachments/assets/7d9ba6c7-e0a7-4ad8-87ca-69e546cb04f5" />
+Ana monitoring paneli — sunucu özeti, key metrics, load average ve performance charts.
+
+![Dashboard](./docs/screenshots/dashboard.png)
+
+<!-- SS yolu: docs/screenshots/dashboard.png -->
+
+---
+
+### System Status
+
+Altyapı detayları — system overview, dependencies, health summary, system information.
+
+![System Status](./docs/screenshots/system-status.png)
+
+<!-- SS yolu: docs/screenshots/system-status.png -->
+
+---
 
 ### Logs
 
-> Buraya Logs ekran görüntüsü eklenebilir.
+Son API istek logları — method badge, HTTP status, result, response time.
+
+![Logs](./docs/screenshots/logs.png)
+
+<!-- SS yolu: docs/screenshots/logs.png -->
+
+---
 
 ### Settings
 
-> Buraya Settings ekran görüntüsü eklenebilir.
+API Key yönetimi, hesap bilgileri ve oturum güvenliği.
+
+![Settings](./docs/screenshots/settings.png)
+
+<!-- SS yolu: docs/screenshots/settings.png -->
 
 ---
 
-## 🎯 Projenin Amacı
+## Teknoloji Yığını
 
-Bu proje yalnızca sistem bilgilerinin ekranda gösterilmesi amacıyla değil, **gerçek bir monitoring sisteminin temel mimarisini oluşturmak** amacıyla geliştirilmiştir.
+### Frontend
 
-Proje ile:
+| Teknoloji | Kullanım |
+|-----------|----------|
+| **React 19** | UI component yapısı |
+| **Vite 8** | Build tool ve dev server |
+| **Axios** | REST API istekleri |
+| **Recharts** | CPU, RAM, disk, load ve latency grafikleri |
+| **React Icons** | Heroicons & Font Awesome ikon seti |
+| **CSS (Custom)** | Dark theme, glassmorphism, responsive grid |
 
-* Sistem kaynaklarının izlenmesi
-* API isteklerinin merkezi olarak kaydedilmesi
-* Kullanıcı authentication işlemleri
-* API Key tabanlı servis iletişimi
-* Harici uygulamalardan log alınabilmesi
-* Sistem health durumunun takip edilmesi
+### Backend
 
-gibi temel monitoring ihtiyaçlarının tek bir platform üzerinden yönetilmesi hedeflenmiştir.
+| Teknoloji | Kullanım |
+|-----------|----------|
+| **Laravel 13** | REST API ve iş mantığı |
+| **PHP 8.3** | Sunucu tarafı |
+| **Laravel Sanctum** | API token authentication |
+| **PostgreSQL 17** | Kullanıcı ve log veritabanı |
+| **Redis 7** | Cache / servis metrikleri |
 
----
+### DevOps
 
-## 🔮 Gelecekte Eklenebilecek Özellikler
-
-Projenin ilerleyen aşamalarında aşağıdaki özellikler eklenebilir:
-
-* 📈 Daha gelişmiş CPU / RAM / Disk grafik geçmişi
-* 🚨 Threshold aşımında alarm sistemi
-* 📧 E-mail bildirimleri
-* 🔔 Real-time notification
-* 🤖 Monitoring Agent
-* 📊 Daha gelişmiş log filtreleme
-* 🔎 Log search
-* 📅 Tarih aralığına göre log filtreleme
-* 🔑 API Key yenileme / revoke işlemleri
-* 👥 Kullanıcı ve proje bazlı monitoring
-* 📡 WebSocket ile gerçek zamanlı veri aktarımı
+| Teknoloji | Kullanım |
+|-----------|----------|
+| **Docker Compose** | Frontend, backend, PostgreSQL, Redis orchestration |
 
 ---
 
-## 👩‍💻 Development
+## Mimari
 
-**Eduente Monitoring**, staj sürecinde gerçek bir monitoring uygulamasının temel yapılarını öğrenmek ve uygulamak amacıyla geliştirilmiştir.
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     React Frontend (Vite)                    │
+│  Login · Register · Dashboard · System Status · Logs · Settings │
+└───────────────────────────┬─────────────────────────────────┘
+                            │ HTTP / REST
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   Laravel API (Port 8000)                    │
+│  Auth · System Metrics · Request Logs · API Key Middleware   │
+└───────────────┬─────────────────────────┬───────────────────┘
+                │                         │
+                ▼                         ▼
+         ┌──────────────┐          ┌──────────────┐
+         │  PostgreSQL  │          │    Redis     │
+         └──────────────┘          └──────────────┘
+```
 
-Proje boyunca **Laravel REST API, React, PostgreSQL, Redis, Docker, authentication, API Key yönetimi, request logging ve sistem metriklerinin işletim sistemi üzerinden okunması** gibi konularda çalışmalar gerçekleştirilmiştir.
+**Veri akışı (özet):**
+
+1. Kullanıcı **Register/Login** ile Sanctum token alır.
+2. **Dashboard** `/api/system-status` üzerinden host metriklerini çeker.
+3. **Logs** `/api/logs` üzerinden istek geçmişini listeler.
+4. Harici servisler **API Key** ile `POST /api/log` endpoint'ine log gönderir.
 
 ---
 
-## 📄 License
+## Kurulum
 
-This project was developed for educational and internship purposes.
+### Gereksinimler
+
+- Docker & Docker Compose  
+**veya**
+- Node.js 20+, PHP 8.3+, Composer, PostgreSQL, Redis
+
+### Docker ile (önerilen)
+
+```bash
+# Proje kök dizininde
+docker compose up --build
+```
+
+| Servis | Adres |
+|--------|-------|
+| Frontend | http://localhost:5173 |
+| Backend API | http://localhost:8000 |
+| PostgreSQL | localhost:5432 |
+| Redis | localhost:6379 |
+
+### Manuel kurulum
+
+**Backend:**
+
+```bash
+cd backend
+composer install
+cp .env.example .env   # gerekirse
+php artisan key:generate
+php artisan migrate
+php artisan serve
+```
+
+**Frontend:**
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend varsayılan olarak `http://localhost:8000/api` adresine istek atar (`frontend/src/api/config.js`).
+
+---
+
+## API Özeti
+
+| Method | Endpoint | Açıklama |
+|--------|----------|----------|
+| `POST` | `/api/register` | Kullanıcı kaydı + API Key |
+| `POST` | `/api/login` | Giriş + Sanctum token |
+| `GET` | `/api/user` | Oturum açık kullanıcı (Sanctum) |
+| `GET` | `/api/system-status` | Sunucu metrikleri ve health |
+| `GET` | `/api/logs` | İstek log listesi |
+| `POST` | `/api/log` | Log kaydı (API Key gerekli) |
+
+---
+
+## Proje Yapısı
+
+```
+Eduente-staj/
+├── frontend/                 # React + Vite uygulaması
+│   ├── src/
+│   │   ├── pages/            # Dashboard, SystemStatus, Logs, Settings, Login...
+│   │   ├── components/       # Navbar, Sidebar, StatCard, MetricCharts...
+│   │   ├── context/          # AuthContext
+│   │   ├── hooks/            # useSystemStatus, useLogs (5 sn polling)
+│   │   └── utils/            # Tarih formatlama, auth storage
+│   └── package.json
+│
+├── backend/                  # Laravel API
+│   ├── app/Http/Controllers/
+│   ├── routes/api.php
+│   └── ...
+│
+├── docs/
+│   └── screenshots/          # README ekran görüntüleri (buraya SS koy)
+│
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## Geliştirici Notları
+
+- **Tasarım dili:** Dark background, cyan/green neon vurgular, glass panel kartlar, Outfit + IBM Plex Mono fontları.
+- **Otomatik yenileme:** `REFRESH_INTERVAL = 5000` ms (`frontend/src/hooks/useSystemStatus.js`).
+- **Tarih formatı:** Backend UTC gönderir; frontend kullanıcı yerel saatine dönüştürür.
+- **API Key:** Register sırasında oluşturulur; Settings sayfasından görüntülenir ve kopyalanır.
+- **Response Time eşikleri:** 0–300 ms Healthy · 301–1000 ms Warning · 1000+ ms Critical.
+
+---
+
+<div align="center">
+
+**Eduente Monitoring** — Infrastructure Observability
+
+*Staj / eğitim amaçlı geliştirilmiş modern monitoring paneli*
+
+</div>
