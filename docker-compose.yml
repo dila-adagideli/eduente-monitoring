@@ -1,0 +1,44 @@
+services:
+  frontend:
+   build: ./frontend
+   ports:
+    - "5173:5173"
+   volumes:
+    - ./frontend:/app
+    - /app/node_modules
+   environment:
+    CHOKIDAR_USEPOLLING: "true"
+    WATCHPACK_POLLING: "true"
+   depends_on:
+    - backend
+    - postgres
+
+  backend:
+   build:
+    context: ./backend
+   working_dir: /app
+   volumes:
+    - ./backend:/app
+   ports:
+    - "8000:8000"
+   depends_on:
+    - redis
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: monitoring
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -1,0 +1,123 @@
+.server-overview {
+  padding: 28px 30px;
+  margin-bottom: 0;
+  border-radius: var(--radius-lg);
+  --panel-accent: var(--accent);
+}
+
+.server-overview:hover {
+  transform: translateY(-3px);
+}
+
+.server-overview.glass-panel--glow::after {
+  width: 260px;
+  height: 260px;
+  top: -90px;
+  right: -50px;
+}
+
+.server-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+
+.server-header h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+
+.status:hover {
+  transform: scale(1.03);
+}
+
+.online {
+  background: var(--status-healthy-bg);
+  color: var(--status-healthy);
+  border: 1px solid var(--status-healthy-border);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+}
+
+.offline {
+  background: var(--status-critical-bg);
+  color: var(--status-critical);
+  border: 1px solid var(--status-critical-border);
+}
+
+.server-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.server-grid div {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  transition: background var(--t-base), transform var(--t-base),
+    border-color var(--t-base), box-shadow var(--t-base);
+}
+
+.server-grid div:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.server-grid span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.server-grid strong {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 900px) {
+  .server-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .server-header h2 {
+    font-size: 22px;
+  }
+
+  .server-overview {
+    padding: 22px 20px;
+  }
+}

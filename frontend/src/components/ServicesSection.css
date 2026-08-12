@@ -1,0 +1,150 @@
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+  align-items: stretch;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 22px 22px 20px;
+  min-width: 0;
+}
+
+.service-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: rgba(8, 15, 28, 0.9);
+  border: 1px solid color-mix(in srgb, var(--panel-accent) 28%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--panel-accent) 12%, transparent);
+  flex-shrink: 0;
+  transition: transform var(--t-base);
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.07) rotate(-2deg);
+}
+
+.service-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.service-identity h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.service-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.service-badge.online {
+  color: var(--status-healthy);
+  background: var(--status-healthy-bg);
+  border-color: var(--status-healthy-border);
+}
+
+.service-badge.offline {
+  color: var(--status-critical);
+  background: var(--status-critical-bg);
+  border-color: var(--status-critical-border);
+}
+
+.service-badge.online svg {
+  animation: status-pulse 2s ease infinite;
+}
+
+.service-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.service-field {
+  padding: 14px 14px 12px;
+  border-radius: 12px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  transition: background var(--t-fast), border-color var(--t-fast),
+    transform var(--t-fast);
+}
+
+.service-field:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.service-field span {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.service-field strong {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.service-field .env-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  color: var(--accent);
+  font-size: 12px;
+  text-transform: lowercase;
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .service-fields {
+    grid-template-columns: 1fr;
+  }
+}
