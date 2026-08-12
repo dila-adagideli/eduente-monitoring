@@ -247,23 +247,28 @@ Frontend varsayılan olarak `http://localhost:8000/api` adresine istek atar (`fr
 ## Proje Yapısı
 
 ```
-Eduente-staj/
-├── frontend/                 # React + Vite uygulaması
+eduente-staj/
+│
+├── backend/
+│   ├── app/
+│   │   ├── Http/
+│   │   ├── Models/
+│   │   └── Services/
+│   ├── database/
+│   ├── routes/
+│   ├── Dockerfile
+│   └── composer.json
+│
+├── frontend/
 │   ├── src/
-│   │   ├── pages/            # Dashboard, SystemStatus, Logs, Settings, Login...
-│   │   ├── components/       # Navbar, Sidebar, StatCard, MetricCharts...
-│   │   ├── context/          # AuthContext
-│   │   ├── hooks/            # useSystemStatus, useLogs (5 sn polling)
-│   │   └── utils/            # Tarih formatlama, auth storage
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── utils/
+│   ├── Dockerfile
 │   └── package.json
-│
-├── backend/                  # Laravel API
-│   ├── app/Http/Controllers/
-│   ├── routes/api.php
-│   └── ...
-│
-├── docs/
-│   └── screenshots/          # README ekran görüntüleri (buraya SS koy)
 │
 ├── docker-compose.yml
 └── README.md
