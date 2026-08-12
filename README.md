@@ -63,15 +63,14 @@ Frontend; glassmorphism, dark theme ve neon vurgularla modern bir SaaS monitorin
 
 ## Ekran Görüntüleri
 
-> Screenshot'ları `docs/screenshots/` klasörüne ekleyin. Dosya adları aşağıdaki yollarla eşleşmelidir.
+
 
 ### Login
 
 Giriş ekranı — email ve şifre ile oturum açma.
 
-![Login ekranı](./docs/screenshots/login.png)
+<img width="1801" height="841" alt="image" src="https://github.com/user-attachments/assets/ae1d6451-e62e-4a34-a13a-b6451db1bc9b" />
 
-<!-- SS yolu: docs/screenshots/login.png -->
 
 ---
 
@@ -79,9 +78,7 @@ Giriş ekranı — email ve şifre ile oturum açma.
 
 Yeni kullanıcı kaydı.
 
-![Register ekranı](./docs/screenshots/register.png)
-
-<!-- SS yolu: docs/screenshots/register.png -->
+<img width="1842" height="853" alt="image" src="https://github.com/user-attachments/assets/f4636e64-0cc7-40df-a220-5dc160ac4819" />
 
 ---
 
@@ -89,9 +86,13 @@ Yeni kullanıcı kaydı.
 
 Ana monitoring paneli — sunucu özeti, key metrics, load average ve performance charts.
 
-![Dashboard](./docs/screenshots/dashboard.png)
+<img width="1902" height="881" alt="image" src="https://github.com/user-attachments/assets/524f216e-c247-4396-ae06-f5f7f1cd862c" />
 
-<!-- SS yolu: docs/screenshots/dashboard.png -->
+<img width="1893" height="891" alt="image" src="https://github.com/user-attachments/assets/f5563224-8e66-4369-b8b4-e6ffd3292053" />
+
+<img width="1893" height="895" alt="image" src="https://github.com/user-attachments/assets/df0b4a86-0713-489a-99ae-a30a4fac53b6" />
+
+<img width="1911" height="907" alt="image" src="https://github.com/user-attachments/assets/bdf17798-43d1-469f-a778-4818e562313f" />
 
 ---
 
@@ -99,9 +100,11 @@ Ana monitoring paneli — sunucu özeti, key metrics, load average ve performanc
 
 Altyapı detayları — system overview, dependencies, health summary, system information.
 
-![System Status](./docs/screenshots/system-status.png)
+<img width="1906" height="892" alt="image" src="https://github.com/user-attachments/assets/32a13acd-219e-4b63-8211-def49d52ff15" />
 
-<!-- SS yolu: docs/screenshots/system-status.png -->
+<img width="1915" height="903" alt="image" src="https://github.com/user-attachments/assets/0aced3c4-df06-4c78-b137-3f5632eb014c" />
+
+<img width="1915" height="902" alt="image" src="https://github.com/user-attachments/assets/fac7d120-53ce-4977-9c3e-d9641d899b61" />
 
 ---
 
@@ -109,9 +112,7 @@ Altyapı detayları — system overview, dependencies, health summary, system in
 
 Son API istek logları — method badge, HTTP status, result, response time.
 
-![Logs](./docs/screenshots/logs.png)
-
-<!-- SS yolu: docs/screenshots/logs.png -->
+<img width="1912" height="902" alt="image" src="https://github.com/user-attachments/assets/843d354c-cdd0-43bf-a345-fe85976c2f5d" />
 
 ---
 
@@ -119,9 +120,7 @@ Son API istek logları — method badge, HTTP status, result, response time.
 
 API Key yönetimi, hesap bilgileri ve oturum güvenliği.
 
-![Settings](./docs/screenshots/settings.png)
-
-<!-- SS yolu: docs/screenshots/settings.png -->
+<img width="1902" height="902" alt="image" src="https://github.com/user-attachments/assets/14cb63ae-4a85-432d-b67f-c7e82a0b60ad" />
 
 ---
 
